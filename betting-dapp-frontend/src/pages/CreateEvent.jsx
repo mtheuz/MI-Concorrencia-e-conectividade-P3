@@ -26,24 +26,64 @@ const CreateEvent = () => {
   };
 
   return (
-    <div>
-      <h1>Criar Evento</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Descrição:</label>
-          <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} required />
-        </div>
-        <div>
-          <label>Resultados (separados por vírgula):</label>
-          <input type="text" value={outcomes} onChange={(e) => setOutcomes(e.target.value)} required />
-        </div>
-        <div>
-          <label>Odds (separados por vírgula):</label>
-          <input type="text" value={odds} onChange={(e) => setOdds(e.target.value)} required />
-        </div>
-        <button type="submit">Criar Evento</button>
-      </form>
-      <p>{message}</p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          Criar Evento
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">Descrição:</label>
+            <input
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Descrição do evento"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Resultados (separados por vírgula):
+            </label>
+            <input
+              type="text"
+              value={outcomes}
+              onChange={(e) => setOutcomes(e.target.value)}
+              required
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Resultado 1, Resultado 2, ..."
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">Odds (separadas por vírgula):</label>
+            <input
+              type="text"
+              value={odds}
+              onChange={(e) => setOdds(e.target.value)}
+              required
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="1, 2, 3..."
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Criar Evento
+          </button>
+        </form>
+        {message && (
+          <p
+            className={`mt-4 text-center font-medium ${
+              message.includes('sucesso') ? 'text-green-500' : 'text-red-500'
+            }`}
+          >
+            {message}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

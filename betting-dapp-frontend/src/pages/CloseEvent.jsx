@@ -36,25 +36,54 @@ const CloseEvent = () => {
   };
 
   return (
-    <div>
-      <h1>Fechar Evento</h1>
-      <div>
-        <label>Evento:</label>
-        <select value={eventId} onChange={(e) => setEventId(e.target.value)}>
-          <option value="">Selecione um evento</option>
-          {events.map((event) => (
-            <option key={event.id} value={event.id}>
-              {event.description}
-            </option>
-          ))}
-        </select>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <div className="bg-white w-full max-w-lg p-6 rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Fechar Evento</h1>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 font-medium mb-2">Evento:</label>
+          <select
+            value={eventId}
+            onChange={(e) => setEventId(e.target.value)}
+            className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Selecione um evento</option>
+            {events.map((event) => (
+              <option key={event.id} value={event.id}>
+                {event.description}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 font-medium mb-2">Resultado Vencedor:</label>
+          <input
+            type="number"
+            value={winningOutcome}
+            onChange={(e) => setWinningOutcome(e.target.value)}
+            placeholder="Digite o número do resultado"
+            className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <button
+          onClick={handleCloseEvent}
+          className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
+        >
+          Fechar Evento
+        </button>
+
+        {message && (
+          <p
+            className={`mt-4 text-center font-medium ${
+              message.includes('sucesso') ? 'text-green-500' : 'text-red-500'
+            }`}
+          >
+            {message}
+          </p>
+        )}
       </div>
-      <div>
-        <label>Resultado Vencedor:</label>
-        <input type="number" value={winningOutcome} onChange={(e) => setWinningOutcome(e.target.value)} />
-      </div>
-      <button onClick={handleCloseEvent}>Fechar Evento</button>
-      <p>{message}</p>
     </div>
   );
 };
